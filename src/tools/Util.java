@@ -5,13 +5,18 @@
  */
 package tools;
 
+import javax.swing.JComponent;
+
 /**
  *
  * @author u09285835112
  */
 public class Util {
-    public static void habilitar() {
-        
+    public static void habilitar(boolean ver, JComponent...comp) {
+        for(int i = 0; i < comp.length;i++){
+        comp[i].setEnabled(ver);
+        }
     }
+    
    
 }

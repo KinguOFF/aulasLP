@@ -1,11 +1,13 @@
 package view;
 
+import com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl;
 import javax.swing.JOptionPane;
-import bean.Lspf_usuarios;
-import dao.Lspf_usuariosDAO;
+//import bean.Lspf_usuarios;
+//import dao.Lspf_usuariosDAO;
 import java.text.ParseException;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
+import tools.Util;
 
 public class JDlgUsuario extends javax.swing.JDialog {
 
@@ -18,7 +20,8 @@ public class JDlgUsuario extends javax.swing.JDialog {
         initComponents();
         setTitle("Usuario");
         setLocationRelativeTo(null);
-        desabilitar();
+        Util.habilitar(false, jTxtLspf_Apelido, jTxtLspf_Codigo, jTxtLspf_Nome, jFmtLspf_CPF, jFmtLspf_DataNasc, jCboLspf_Nivel, jChbLspf_Ativo, jPwfLspf_Senha, jBtnLspf_Confirmar, jBtnLspf_Cancelar);
+        Util.habilitar(true, jBtnLspf_Alterar, jBtnLspf_Pesquisar, jBtnLspf_Incluir, jBtnLspf_Excluir);
         
         try { // criando máscaras
         mascaraCPF = new MaskFormatter( "###.###.###-##" ); }
@@ -33,39 +36,6 @@ public class JDlgUsuario extends javax.swing.JDialog {
         jFmtLspf_DataNasc.setFormatterFactory(new DefaultFormatterFactory(mascaraData));
     }
 
-    private void habilitar() {
-        jTxtLspf_Codigo.setEnabled(true);
-        jTxtLspf_Nome.setEnabled(true);
-        jTxtLspf_Apelido.setEnabled(true);
-        jFmtLspf_CPF.setEnabled(true);
-        jFmtLspf_DataNasc.setEnabled(true);
-        jPwfLspf_Senha.setEnabled(true);
-        jCboLspf_Nivel.setEnabled(true);
-        jChbLspf_Ativo.setEnabled(true);
-        jBtnLspf_Incluir.setEnabled(false);
-        jBtnLspf_Alterar.setEnabled(false);
-        jBtnLspf_Pesquisar.setEnabled(false);
-        jBtnLspf_Excluir.setEnabled(false);
-        jBtnLspf_Cancelar.setEnabled(true);
-        jBtnLspf_Confirmar.setEnabled(true);
-    }
-
-    private void desabilitar() {
-        jTxtLspf_Codigo.setEnabled(false);
-        jTxtLspf_Nome.setEnabled(false);
-        jTxtLspf_Apelido.setEnabled(false);
-        jFmtLspf_CPF.setEnabled(false);
-        jFmtLspf_DataNasc.setEnabled(false);
-        jPwfLspf_Senha.setEnabled(false);
-        jCboLspf_Nivel.setEnabled(false);
-        jChbLspf_Ativo.setEnabled(false);
-        jBtnLspf_Incluir.setEnabled(true);
-        jBtnLspf_Alterar.setEnabled(true);
-        jBtnLspf_Pesquisar.setEnabled(true);
-        jBtnLspf_Excluir.setEnabled(true);
-        jBtnLspf_Cancelar.setEnabled(false);
-        jBtnLspf_Confirmar.setEnabled(false);
-    }
     
     private void limpar() {
         jTxtLspf_Codigo.setText(null);
@@ -283,40 +253,46 @@ public class JDlgUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_jCboLspf_NivelActionPerformed
 
     private void jBtnLspf_ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLspf_ConfirmarActionPerformed
-        desabilitar();
         
-        Lspf_usuarios Lspf_usuarios = new Lspf_usuarios();
-        int cod = Integer.parseInt(jTxtLspf_Codigo.getText());
-        Lspf_usuarios.setLspf_idUsuario(cod);
-        Lspf_usuarios.setLspf_nome(jTxtLspf_Nome.getText());
-        Lspf_usuarios.setLspf_apelido(jTxtLspf_Apelido.getText());
-        Lspf_usuarios.setLspf_cpf(jFmtLspf_CPF.getText());
-        Lspf_usuarios.setLspf_ativo(jChbLspf_Ativo.getText());
-        Lspf_usuarios.setLspf_dataNascimento(null);
-        Lspf_usuarios.setLspf_senha(jPwfLspf_Senha.getText());
-        Lspf_usuarios.setLspf_nivel(jCboLspf_Nivel.getSelectedIndex());
-        if (jChbLspf_Ativo.isSelected()){
-            Lspf_usuarios.setLspf_ativo("T");
-        } else {
-            Lspf_usuarios.setLspf_ativo("F");
-        }
+        Util.habilitar(false, jTxtLspf_Apelido, jPwfLspf_Senha, jTxtLspf_Codigo, jTxtLspf_Nome, jFmtLspf_CPF, jFmtLspf_DataNasc, jFmtLspf_DataNasc, jCboLspf_Nivel, jChbLspf_Ativo, jBtnLspf_Confirmar, jBtnLspf_Cancelar);
+        Util.habilitar(true, jBtnLspf_Alterar, jBtnLspf_Excluir, jBtnLspf_Pesquisar, jBtnLspf_Incluir);
+   //     Lspf_usuarios Lspf_usuarios = new Lspf_usuarios();
+   //   int cod = Integer.parseInt(jTxtLspf_Codigo.getText());
+   //   Lspf_usuarios.setLspf_idUsuario(cod);
+   //   Lspf_usuarios.setLspf_nome(jTxtLspf_Nome.getText());
+   //   Lspf_usuarios.setLspf_apelido(jTxtLspf_Apelido.getText());
+   //   Lspf_usuarios.setLspf_cpf(jFmtLspf_CPF.getText());
+   //   Lspf_usuarios.setLspf_ativo(jChbLspf_Ativo.getText());
+   //   Lspf_usuarios.setLspf_dataNascimento(null);
+   //   Lspf_usuarios.setLspf_senha(jPwfLspf_Senha.getText());
+   //     Lspf_usuarios.setLspf_nivel(jCboLspf_Nivel.getSelectedIndex());
+        //if (jChbLspf_Ativo.isSelected()){
+         //   Lspf_usuarios.setLspf_ativo("T");
+        //} else {
+         //   Lspf_usuarios.setLspf_ativo("F");
+        //}
         
-        Lspf_usuariosDAO Lspf_usuariosDAO = new Lspf_usuariosDAO();
-        Lspf_usuariosDAO.insert(Lspf_usuarios);
+        //Lspf_usuariosDAO Lspf_usuariosDAO = new Lspf_usuariosDAO();
+        //Lspf_usuariosDAO.insert(Lspf_usuarios);
         
         limpar();
     }//GEN-LAST:event_jBtnLspf_ConfirmarActionPerformed
 
     private void jBtnLspf_IncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLspf_IncluirActionPerformed
-        habilitar();
+        Util.habilitar(true, jTxtLspf_Apelido, jPwfLspf_Senha, jTxtLspf_Codigo, jTxtLspf_Nome, jFmtLspf_CPF, jFmtLspf_DataNasc, jFmtLspf_DataNasc, jCboLspf_Nivel, jChbLspf_Ativo, jBtnLspf_Confirmar, jBtnLspf_Cancelar);
+        Util.habilitar(false, jBtnLspf_Alterar, jBtnLspf_Excluir, jBtnLspf_Pesquisar, jBtnLspf_Incluir);
     }//GEN-LAST:event_jBtnLspf_IncluirActionPerformed
 
     private void jBtnLspf_AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLspf_AlterarActionPerformed
-        habilitar();
+        Util.habilitar(true, jTxtLspf_Apelido, jPwfLspf_Senha, jTxtLspf_Codigo, jTxtLspf_Nome, jFmtLspf_CPF, jFmtLspf_DataNasc, jFmtLspf_DataNasc, jCboLspf_Nivel, jChbLspf_Ativo, jBtnLspf_Confirmar, jBtnLspf_Cancelar);
+        Util.habilitar(false, jBtnLspf_Alterar, jBtnLspf_Excluir, jBtnLspf_Pesquisar, jBtnLspf_Incluir);
     }//GEN-LAST:event_jBtnLspf_AlterarActionPerformed
 
     private void jBtnLspf_PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLspf_PesquisarActionPerformed
-       
+        Util.habilitar(true, jTxtLspf_Apelido, jPwfLspf_Senha, jTxtLspf_Codigo, jTxtLspf_Nome, jFmtLspf_CPF, jFmtLspf_DataNasc, jFmtLspf_DataNasc, jCboLspf_Nivel, jChbLspf_Ativo, jBtnLspf_Confirmar, jBtnLspf_Cancelar);
+        Util.habilitar(false, jBtnLspf_Alterar, jBtnLspf_Excluir, jBtnLspf_Pesquisar, jBtnLspf_Incluir);
+        
+        
 //        String resp = JOptionPane.showInputDialog(null, "Entre com o codigo");
 //        Lspf_usuariosDAO lspf_usuariosDAO = new Lspf_usuariosDAO();
 //        if (resp == null) {
@@ -338,40 +314,41 @@ public class JDlgUsuario extends javax.swing.JDialog {
 //        }
 //        };
         
-        JDialogUsuariosPesquisar pesquisar = new JDialogUsuariosPesquisar(null, true);
-        pesquisar.setVisible(true);
+        //JDialogUsuariosPesquisar pesquisar = new JDialogUsuariosPesquisar(null, true);
+        //pesquisar.setVisible(true);
         
     }//GEN-LAST:event_jBtnLspf_PesquisarActionPerformed
 
     private void jBtnLspf_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLspf_CancelarActionPerformed
-        desabilitar();
+        Util.habilitar(false, jTxtLspf_Apelido, jPwfLspf_Senha, jTxtLspf_Codigo, jTxtLspf_Nome, jFmtLspf_CPF, jFmtLspf_DataNasc, jFmtLspf_DataNasc, jCboLspf_Nivel, jChbLspf_Ativo, jBtnLspf_Confirmar, jBtnLspf_Cancelar);
+        Util.habilitar(true, jBtnLspf_Alterar, jBtnLspf_Excluir, jBtnLspf_Pesquisar, jBtnLspf_Incluir);
     }//GEN-LAST:event_jBtnLspf_CancelarActionPerformed
 
     private void jBtnLspf_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLspf_ExcluirActionPerformed
-        int resp = JOptionPane.showConfirmDialog(null, "Confirme exclusão!", "Deletar registro", JOptionPane.YES_OPTION);
-        if (resp == JOptionPane.YES_OPTION) {
-            JOptionPane.showMessageDialog(null, "Exclusão realizada");
-             Lspf_usuarios Lspf_usuarios = new Lspf_usuarios();
-        int cod = Integer.parseInt(jTxtLspf_Codigo.getText());
-        Lspf_usuarios.setLspf_idUsuario(cod);
-        Lspf_usuarios.setLspf_nome(jTxtLspf_Nome.getText());
-        Lspf_usuarios.setLspf_apelido(jTxtLspf_Apelido.getText());
-        Lspf_usuarios.setLspf_cpf(jFmtLspf_CPF.getText());
-        Lspf_usuarios.setLspf_ativo(jChbLspf_Ativo.getText());
-        Lspf_usuarios.setLspf_dataNascimento(null);
-        Lspf_usuarios.setLspf_senha(jPwfLspf_Senha.getText());
-        Lspf_usuarios.setLspf_nivel(jCboLspf_Nivel.getSelectedIndex());
-        if (jChbLspf_Ativo.isSelected()){
-            Lspf_usuarios.setLspf_ativo("T");
-        } else {
-            Lspf_usuarios.setLspf_ativo("F");
-        }
+        //int resp = JOptionPane.showConfirmDialog(null, "Confirme exclusão!", "Deletar registro", JOptionPane.YES_OPTION);
+        //if (resp == JOptionPane.YES_OPTION) {
+        //    JOptionPane.showMessageDialog(null, "Exclusão realizada");
+        //     Lspf_usuarios Lspf_usuarios = new Lspf_usuarios();
+        //int cod = Integer.parseInt(jTxtLspf_Codigo.getText());
+        //Lspf_usuarios.setLspf_idUsuario(cod);
+        //Lspf_usuarios.setLspf_nome(jTxtLspf_Nome.getText());
+        //Lspf_usuarios.setLspf_apelido(jTxtLspf_Apelido.getText());
+        //Lspf_usuarios.setLspf_cpf(jFmtLspf_CPF.getText());
+        //Lspf_usuarios.setLspf_ativo(jChbLspf_Ativo.getText());
+        //Lspf_usuarios.setLspf_dataNascimento(null);
+        //Lspf_usuarios.setLspf_senha(jPwfLspf_Senha.getText());
+        //Lspf_usuarios.setLspf_nivel(jCboLspf_Nivel.getSelectedIndex());
+        //if (jChbLspf_Ativo.isSelected()){
+        //    Lspf_usuarios.setLspf_ativo("T");
+        //} else {
+        //    Lspf_usuarios.setLspf_ativo("F");
+        //}
         
-        Lspf_usuariosDAO Lspf_usuariosDAO = new Lspf_usuariosDAO();
-        Lspf_usuariosDAO.delete(Lspf_usuarios);
+        //Lspf_usuariosDAO Lspf_usuariosDAO = new Lspf_usuariosDAO();
+        //Lspf_usuariosDAO.delete(Lspf_usuarios);
         
-        limpar();
-        }
+        //limpar();
+        //}
     }//GEN-LAST:event_jBtnLspf_ExcluirActionPerformed
 
     public static void main(String args[]) {

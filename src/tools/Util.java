@@ -6,6 +6,7 @@
 package tools;
 
 import javax.swing.JComponent;
+import javax.swing.JTextField;
 
 /**
  *
@@ -17,6 +18,10 @@ public class Util {
         comp[i].setEnabled(ver);
         }
     }
-    
+    public static void limpar(JComponent ... comp) {
+        for(int i = 0; i < comp.length; i++){
+        ((JTextField)comp[i]).setText("");
+        }
+    }
    
 }

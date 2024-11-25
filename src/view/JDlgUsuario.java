@@ -256,6 +256,8 @@ public class JDlgUsuario extends javax.swing.JDialog {
         
         Util.habilitar(false, jTxtLspf_Apelido, jPwfLspf_Senha, jTxtLspf_Codigo, jTxtLspf_Nome, jFmtLspf_CPF, jFmtLspf_DataNasc, jFmtLspf_DataNasc, jCboLspf_Nivel, jChbLspf_Ativo, jBtnLspf_Confirmar, jBtnLspf_Cancelar);
         Util.habilitar(true, jBtnLspf_Alterar, jBtnLspf_Excluir, jBtnLspf_Pesquisar, jBtnLspf_Incluir);
+        Util.limpar(jTxtLspf_Apelido, jCboLspf_Nivel, jChbLspf_Ativo);
+        
    //     Lspf_usuarios Lspf_usuarios = new Lspf_usuarios();
    //   int cod = Integer.parseInt(jTxtLspf_Codigo.getText());
    //   Lspf_usuarios.setLspf_idUsuario(cod);
@@ -281,6 +283,7 @@ public class JDlgUsuario extends javax.swing.JDialog {
     private void jBtnLspf_IncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLspf_IncluirActionPerformed
         Util.habilitar(true, jTxtLspf_Apelido, jPwfLspf_Senha, jTxtLspf_Codigo, jTxtLspf_Nome, jFmtLspf_CPF, jFmtLspf_DataNasc, jFmtLspf_DataNasc, jCboLspf_Nivel, jChbLspf_Ativo, jBtnLspf_Confirmar, jBtnLspf_Cancelar);
         Util.habilitar(false, jBtnLspf_Alterar, jBtnLspf_Excluir, jBtnLspf_Pesquisar, jBtnLspf_Incluir);
+
     }//GEN-LAST:event_jBtnLspf_IncluirActionPerformed
 
     private void jBtnLspf_AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLspf_AlterarActionPerformed

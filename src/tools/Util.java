@@ -5,6 +5,8 @@
  */
 package tools;
 
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JTextField;
 
@@ -20,7 +22,14 @@ public class Util {
     }
     public static void limpar(JComponent ... comp) {
         for(int i = 0; i < comp.length; i++){
-        ((JTextField)comp[i]).setText("");
+         if(comp[i] instanceof JTextField){
+        ((JTextField) comp[i]).setText("");
+         }
+         if(comp[i] instanceof JComboBox){
+        ((JComboBox)comp[i]).setSelectedIndex(-1);}
+         
+         if(comp[i] instanceof JCheckBox){
+        ((JCheckBox)comp[i]).setSelected(false);}
         }
     }
    

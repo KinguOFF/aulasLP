@@ -277,7 +277,7 @@ public class JDlgUsuario extends javax.swing.JDialog {
         //Lspf_usuariosDAO Lspf_usuariosDAO = new Lspf_usuariosDAO();
         //Lspf_usuariosDAO.insert(Lspf_usuarios);
         
-        limpar();
+        //limpar();
     }//GEN-LAST:event_jBtnLspf_ConfirmarActionPerformed
 
     private void jBtnLspf_IncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLspf_IncluirActionPerformed

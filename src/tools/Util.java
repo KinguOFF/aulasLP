@@ -5,9 +5,11 @@
  */
 package tools;
 
+import java.util.Date;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -31,6 +33,39 @@ public class Util {
          if(comp[i] instanceof JCheckBox){
         ((JCheckBox)comp[i]).setSelected(false);}
         }
+       
+    }
+    
+   public static int strToInt(String cad) {
+        return Integer.valueOf(cad);
+    }
+    
+   public static String intToString(int num) {
+        return String.valueOf(num);
     }
    
+   public static double strtoDouble(String cad){
+   return Double.valueOf(cad);
+   }
+   
+   public static String doubleToString(double num){
+       return String.valueOf(num);
+   }
+   
+   public static String dateTostring (Date date) {
+   return "";
+   }
+   
+   public static Date stringTodate (String cad) {
+   return null;
+   }
+   
+   public static void mostrar(String mensagem){
+       JOptionPane.showMessageDialog(null, mensagem);
+   }
+   
+   public static boolean perguntar(String mensagem){
+   //JOptionPane.showInputDialog(mensagem);
+       return false;
+   }
 }

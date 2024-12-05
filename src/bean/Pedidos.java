@@ -32,7 +32,6 @@ public class Pedidos  implements java.io.Serializable {
      private Vendedor vendedor;
      private Date data;
      private BigDecimal total;
-     private Set pedidosProdutoses = new HashSet(0);
 
     public Pedidos() {
     }
@@ -41,13 +40,12 @@ public class Pedidos  implements java.io.Serializable {
     public Pedidos(int idpedidos) {
         this.idpedidos = idpedidos;
     }
-    public Pedidos(int idpedidos, Clientes clientes, Vendedor vendedor, Date data, BigDecimal total, Set pedidosProdutoses) {
+    public Pedidos(int idpedidos, Clientes clientes, Vendedor vendedor, Date data, BigDecimal total) {
        this.idpedidos = idpedidos;
        this.clientes = clientes;
        this.vendedor = vendedor;
        this.data = data;
        this.total = total;
-       this.pedidosProdutoses = pedidosProdutoses;
     }
    
      @Id 
@@ -102,14 +100,6 @@ public class Pedidos  implements java.io.Serializable {
         this.total = total;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="pedidos")
-    public Set getPedidosProdutoses() {
-        return this.pedidosProdutoses;
-    }
-    
-    public void setPedidosProdutoses(Set pedidosProdutoses) {
-        this.pedidosProdutoses = pedidosProdutoses;
-    }
 
 
 

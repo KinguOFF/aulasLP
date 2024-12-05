@@ -1,13 +1,13 @@
 package view;
 
-import com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl;
-import javax.swing.JOptionPane;
 //import bean.Lspf_usuarios;
 //import dao.Lspf_usuariosDAO;
 import java.text.ParseException;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import tools.Util;
+import bean.Usuarios;
+import dao.UsuariosDAO;
 
 public class JDlgUsuario extends javax.swing.JDialog {
 
@@ -35,18 +35,20 @@ public class JDlgUsuario extends javax.swing.JDialog {
         }
         jFmtLspf_DataNasc.setFormatterFactory(new DefaultFormatterFactory(mascaraData));
     }
-
     
-    private void limpar() {
-        jTxtLspf_Codigo.setText(null);
-        jTxtLspf_Nome.setText(null);
-        jTxtLspf_Apelido.setText(null);
-        jFmtLspf_CPF.setText(null);
-        jFmtLspf_DataNasc.setText(null);
-        jPwfLspf_Senha.setText(null);
-        jCboLspf_Nivel.setSelectedIndex(0);
-        jChbLspf_Ativo.setSelected(false);
+    public Usuarios viewBean(){
+        Usuarios usuarios = new Usuarios();
+        usuarios.setIdusuarios(Util.strToInt(jTxtLspf_Codigo.getText()));
+        usuarios.setNome(jTxtLspf_Nome.getText());
+        return usuarios;
     }
+    
+    public void beanView(Usuarios usuarios) {
+        jTxtLspf_Codigo.setText(Util.intToString(usuarios.getIdusuarios()));
+        jTxtLspf_Nome.setText(usuarios.getNome());
+        jTxtLspf_Apelido.setText(usuarios.getApelido());
+    }
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -258,10 +260,10 @@ public class JDlgUsuario extends javax.swing.JDialog {
         Util.habilitar(true, jBtnLspf_Alterar, jBtnLspf_Excluir, jBtnLspf_Pesquisar, jBtnLspf_Incluir);
         Util.limpar(jTxtLspf_Apelido, jCboLspf_Nivel, jChbLspf_Ativo);
         
-   //     Lspf_usuarios Lspf_usuarios = new Lspf_usuarios();
+    Usuarios usuarios = viewBean();
+    UsuariosDAO usariosDAO = new UsuariosDAO();
    //   int cod = Integer.parseInt(jTxtLspf_Codigo.getText());
    //   Lspf_usuarios.setLspf_idUsuario(cod);
-   //   Lspf_usuarios.setLspf_nome(jTxtLspf_Nome.getText());
    //   Lspf_usuarios.setLspf_apelido(jTxtLspf_Apelido.getText());
    //   Lspf_usuarios.setLspf_cpf(jFmtLspf_CPF.getText());
    //   Lspf_usuarios.setLspf_ativo(jChbLspf_Ativo.getText());

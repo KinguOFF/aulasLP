@@ -40,6 +40,7 @@ public class JDlgUsuario extends javax.swing.JDialog {
         Usuarios usuarios = new Usuarios();
         usuarios.setIdusuarios(Util.strToInt(jTxtLspf_Codigo.getText()));
         usuarios.setNome(jTxtLspf_Nome.getText());
+        usuarios.setApelido(jTxtLspf_Apelido.getText());
         return usuarios;
     }
     
@@ -260,8 +261,9 @@ public class JDlgUsuario extends javax.swing.JDialog {
         Util.habilitar(true, jBtnLspf_Alterar, jBtnLspf_Excluir, jBtnLspf_Pesquisar, jBtnLspf_Incluir);
         Util.limpar(jTxtLspf_Apelido, jCboLspf_Nivel, jChbLspf_Ativo);
         
-    Usuarios usuarios = viewBean();
-    UsuariosDAO usariosDAO = new UsuariosDAO();
+    //Usuarios usuarios = viewBean();
+    UsuariosDAO usuariosDAO = new UsuariosDAO();
+    usuariosDAO.insert(viewBean());
    //   int cod = Integer.parseInt(jTxtLspf_Codigo.getText());
    //   Lspf_usuarios.setLspf_idUsuario(cod);
    //   Lspf_usuarios.setLspf_apelido(jTxtLspf_Apelido.getText());
@@ -297,6 +299,12 @@ public class JDlgUsuario extends javax.swing.JDialog {
         Util.habilitar(true, jTxtLspf_Apelido, jPwfLspf_Senha, jTxtLspf_Codigo, jTxtLspf_Nome, jFmtLspf_CPF, jFmtLspf_DataNasc, jFmtLspf_DataNasc, jCboLspf_Nivel, jChbLspf_Ativo, jBtnLspf_Confirmar, jBtnLspf_Cancelar);
         Util.habilitar(false, jBtnLspf_Alterar, jBtnLspf_Excluir, jBtnLspf_Pesquisar, jBtnLspf_Incluir);
         
+        
+        JDlgUsuariosPesquisar pesquisar = new JDlgUsuariosPesquisar(null, true);
+        pesquisar.telaAnterior(this);
+        pesquisar.setVisible(true);
+        
+
         
 //        String resp = JOptionPane.showInputDialog(null, "Entre com o codigo");
 //        Lspf_usuariosDAO lspf_usuariosDAO = new Lspf_usuariosDAO();

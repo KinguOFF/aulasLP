@@ -31,7 +31,7 @@ public class Pedidos  implements java.io.Serializable {
      private Clientes clientes;
      private Vendedor vendedor;
      private Date data;
-     private BigDecimal total;
+     private double total;
 
     public Pedidos() {
     }
@@ -40,7 +40,7 @@ public class Pedidos  implements java.io.Serializable {
     public Pedidos(int idpedidos) {
         this.idpedidos = idpedidos;
     }
-    public Pedidos(int idpedidos, Clientes clientes, Vendedor vendedor, Date data, BigDecimal total) {
+    public Pedidos(int idpedidos, Clientes clientes, Vendedor vendedor, Date data, double total) {
        this.idpedidos = idpedidos;
        this.clientes = clientes;
        this.vendedor = vendedor;
@@ -92,11 +92,11 @@ public class Pedidos  implements java.io.Serializable {
 
     
     @Column(name="total", precision=10)
-    public BigDecimal getTotal() {
+    public double getTotal() {
         return this.total;
     }
     
-    public void setTotal(BigDecimal total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 

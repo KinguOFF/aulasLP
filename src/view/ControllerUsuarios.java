@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package view;
+import bean.Usuarios;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 //import bean.Lspf_usuarios;
@@ -20,6 +21,10 @@ public class ControllerUsuarios extends AbstractTableModel {
         this.lista = lista;
     }
     
+    public Usuarios getBean(int rowIndex){
+    return (Usuarios) lista.get(rowIndex);
+    }
+    
     @Override
     public int getRowCount() {
         return lista.size();
@@ -32,17 +37,17 @@ public class ControllerUsuarios extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-//        Lspf_usuarios usuarios = (Lspf_usuarios) lista.get(rowIndex);
-//        if (columnIndex  == 0) {
-//        return usuarios.getLspf_idUsuario();
-//        } 
-//        if (columnIndex  == 1) {
-//        return usuarios.getLspf_nome();
-//        } 
-//        if (columnIndex  == 2) {
-//        return usuarios.getLspf_cpf();
-//        } 
-//        
+        Usuarios usuarios = (Usuarios) lista.get(rowIndex);
+        if (columnIndex  == 0) {
+        return usuarios.getIdusuarios();
+        } 
+        if (columnIndex  == 1) {
+        return usuarios.getNome();
+        } 
+        if (columnIndex  == 2) {
+        return usuarios.getCpf();
+        } 
+        
       return "";
         
 //To change body of generated methods, choose Tools | Templates.

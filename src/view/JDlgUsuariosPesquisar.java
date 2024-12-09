@@ -5,6 +5,8 @@
  */
 package view;
 //import dao.Lspf_usuariosDAO;
+import bean.Usuarios;
+import dao.UsuariosDAO;
 import java.util.List;
 /**
  *
@@ -12,6 +14,9 @@ import java.util.List;
  */
 public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
 
+    private JDlgUsuario JDlgUsuario;
+    ControllerUsuarios controllerUsuarios = new ControllerUsuarios();
+    
     /**
      * Creates new form JDialogUsuariosPesquisar
      */
@@ -19,11 +24,10 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        ControllerUsuarios controllerUsuarios = new ControllerUsuarios();
-       //Lspf_usuariosDAO usuariosDAO = new Lspf_usuariosDAO();
-       // List lista = (List) usuariosDAO.listAll();
-       // controllerUsuarios.setLista(lista);
-        jTable1.setModel(controllerUsuarios);  
+       UsuariosDAO usuariosDAO = new UsuariosDAO();
+       List lista = (List) usuariosDAO.listAll();
+       controllerUsuarios.setLista(lista);
+       jTable1.setModel(controllerUsuarios);  
     }
 
     /**
@@ -88,9 +92,19 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnLspf_concluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLspf_concluirActionPerformed
+        int row1 = jTable1.getSelectedRow();
+        Usuarios usuarios = controllerUsuarios.getBean(row1);
+        JDlgUsuario.beanView(usuarios);
+        
         dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jBtnLspf_concluirActionPerformed
 
+    public void telaAnterior(JDlgUsuario jDlgUsuario) {
+        this.JDlgUsuario = jDlgUsuario;
+    }
+   
+    
+    
     /**
      * @param args the command line arguments
      */

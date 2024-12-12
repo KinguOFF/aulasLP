@@ -154,7 +154,21 @@ public class Clientes  implements java.io.Serializable {
         this.sexo = sexo;
     }
 
-
+   
+    public String toString(){
+    return this.idclientes + "-" + this.nome;
+    }
+    
+    public boolean equals(Object object){
+    if(object instanceof Clientes){
+    Clientes clientes = (Clientes) object;
+    if(clientes.getIdclientes()== this.idclientes){
+    return true;
+    }
+    }
+    return false;
+    }
+    
 
 }
 

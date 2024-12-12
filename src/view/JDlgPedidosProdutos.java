@@ -4,6 +4,14 @@
  */
 package view;
 
+import bean.Clientes;
+import bean.Pedidos;
+import bean.Vendedor;
+import dao.ClientesDAO;
+import java.util.ArrayList;
+import dao.PedidosDAO;
+import tools.Util;
+
 /**
  *
  * @author u10073049107
@@ -13,9 +21,32 @@ public class JDlgPedidosProdutos extends javax.swing.JDialog {
     /**
      * Creates new form JDlgPedido
      */
+    
+    boolean incluir;
+    PedidosDAO pedidosDAO;
+    
     public JDlgPedidosProdutos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        ClientesDAO clientesDAO = new ClientesDAO();
+        ArrayList lista = clientesDAO.listAll();
+        for (Object object : lista) {
+        jCbogss_Cliente.addItem((Clientes) object);
+}
+    }
+    
+    public Pedidos viewBean(){
+        Pedidos pedidos = new Pedidos();
+        pedidos.setIdpedidos(Util.strToInt(jTxtNum.getText()));
+        //pedidos.setData(Util.dateTostring(null));
+        pedidos.setClientes((Clientes) jCbogss_Cliente.getSelectedItem());
+        pedidos.setVendedor((Vendedor) jCbogss_vendedor.getSelectedItem());
+        pedidos.setTotal(Util.strtoDouble(jTxtTotal.getText()));
+    return null;
+    }
+    
+    public void beanView(){
+    
     }
 
     /**
@@ -27,7 +58,7 @@ public class JDlgPedidosProdutos extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
+        jTxtTotal = new javax.swing.JTextField();
         jBtnAlterarLateral = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -40,20 +71,20 @@ public class JDlgPedidosProdutos extends javax.swing.JDialog {
         jBtnCancelar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jBtnConfirmar = new javax.swing.JButton();
-        jTxtgss_num_predido = new javax.swing.JTextField();
         jBtnExcluir = new javax.swing.JButton();
         jFmtgss_data = new javax.swing.JFormattedTextField();
         jBtnAlterar = new javax.swing.JButton();
-        jCbogss_Cliente = new javax.swing.JComboBox<String>();
+        jCbogss_Cliente = new javax.swing.JComboBox<Clientes>();
         jBtnIncluirLateral = new javax.swing.JButton();
-        jCbogss_vendedor = new javax.swing.JComboBox<String>();
+        jCbogss_vendedor = new javax.swing.JComboBox<Vendedor>();
         jBtnExcluirLateral = new javax.swing.JButton();
+        jTxtNum = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTxtTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTxtTotalActionPerformed(evt);
             }
         });
 
@@ -135,8 +166,6 @@ public class JDlgPedidosProdutos extends javax.swing.JDialog {
             }
         });
 
-        jCbogss_Cliente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jBtnIncluirLateral.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imagens/gravar.png"))); // NOI18N
         jBtnIncluirLateral.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,7 +173,6 @@ public class JDlgPedidosProdutos extends javax.swing.JDialog {
             }
         });
 
-        jCbogss_vendedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jCbogss_vendedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCbogss_vendedorActionPerformed(evt);
@@ -157,6 +185,8 @@ public class JDlgPedidosProdutos extends javax.swing.JDialog {
                 jBtnExcluirLateralActionPerformed(evt);
             }
         });
+
+        jTxtNum.setText("jTextField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -183,8 +213,8 @@ public class JDlgPedidosProdutos extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
-                                    .addComponent(jTxtgss_num_predido, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(35, 35, 35)
+                                    .addComponent(jTxtNum, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(72, 72, 72)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(jFmtgss_data, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -198,7 +228,7 @@ public class JDlgPedidosProdutos extends javax.swing.JDialog {
                                     .addComponent(jCbogss_vendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(35, 35, 35)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTxtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel5))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,12 +249,13 @@ public class JDlgPedidosProdutos extends javax.swing.JDialog {
                         .addComponent(jLabel3)
                         .addComponent(jLabel4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTxtgss_num_predido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFmtgss_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCbogss_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCbogss_vendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jFmtgss_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jCbogss_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jCbogss_vendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTxtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTxtNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -248,9 +279,9 @@ public class JDlgPedidosProdutos extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTxtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtTotalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTxtTotalActionPerformed
 
     private void jBtnAlterarLateralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarLateralActionPerformed
         // TODO add your handling code here:
@@ -262,7 +293,12 @@ public class JDlgPedidosProdutos extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
-
+    incluir = true;
+    if (incluir = true){
+    pedidosDAO.insert(viewBean());
+    } else {
+    pedidosDAO.update(viewBean());
+    }
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
@@ -349,8 +385,8 @@ public class JDlgPedidosProdutos extends javax.swing.JDialog {
     private javax.swing.JButton jBtnIncluir;
     private javax.swing.JButton jBtnIncluirLateral;
     private javax.swing.JButton jBtnPesquisar;
-    private javax.swing.JComboBox<String> jCbogss_Cliente;
-    private javax.swing.JComboBox<String> jCbogss_vendedor;
+    private javax.swing.JComboBox<Clientes> jCbogss_Cliente;
+    private javax.swing.JComboBox<Vendedor> jCbogss_vendedor;
     private javax.swing.JFormattedTextField jFmtgss_data;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -359,7 +395,7 @@ public class JDlgPedidosProdutos extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTxtgss_num_predido;
+    private javax.swing.JTextField jTxtNum;
+    private javax.swing.JTextField jTxtTotal;
     // End of variables declaration//GEN-END:variables
 }
